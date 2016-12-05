@@ -1,12 +1,71 @@
+<script>
+  $(document).ready(function () {
+    $("#submit_image_query").click(function () {
+      $("#results_image_query img.unopened").remove();
+      query = $("#field_image_query").val().replace(/\W+/g, "+").toLowerCase();
+      $.getJSON('/image_search/results.json?query=' + query, function(data) {
+        $(data).each(function(index) {
+          var image = document.createElement("img");
+          if (index > 2) {
+            $(image).attr("data-src", "/primitive/from_url?url=" + this);
+            $(image).attr("class", "unopened");
+          } else {
+            $(image).attr("src", "/primitive/from_url?url=" + this);
+          }
+          $("#results_image_query").append(image);
+        });
+        setImageClickHandlers();
+      });
+    });
+
+    $("#action_reveal_result").click(function () {
+      var image = $("#results_image_query img.unopened").first();
+      image.attr("src", image.attr("data-src"));
+      image.attr("src", image.attr("data-src"));
+      image.removeClass("unopened");
+    });
+
+    function setImageClickHandlers() {
+      $("#results_image_query img").click(function (event) {
+        $("#results_image_query img").removeClass("selected");
+        $(event.target).toggleClass("selected");
+        $("#field_image").val($(event.target).attr("src"));
+        console.log($("#field_image").val());
+      });
+    }
+    setImageClickHandlers();
+
+    $("#field_title").change(function (){
+      $("#field_image_query").val($("#field_title").val().toLowerCase());
+    });
+  });
+</script>
+
+<style>
+#results_image_query img {
+  width: 180px;
+}
+
+.selected {
+  border: 3px solid YellowGreen;
+  border-radius: 3px;
+}
+</style>
+
 <%= form_for(card) do |f| %>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, id: "field_title" %>
   </div>
 
   <div class="field">
     <%= f.label :image %>
-    <%= f.text_field :image %>
+    <%= f.hidden_field :image, id: "field_image" %>
+    <%= text_field_tag :query, "", id: "field_image_query", placeholder: "Images based on..." %>
+    <button type="button" id="submit_image_query">Generate Images</button>
+    <button type="button" id="action_reveal_result">Load another...</button>
+    <div id="results_image_query">
+    </div>
   </div>
 
   <div class="field">

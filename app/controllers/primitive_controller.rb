@@ -14,6 +14,7 @@ class PrimitiveController < ApplicationController
     out_filename = in_filename.gsub("/tmp/", "/tmp/out-")
     IO.copy_stream(open(params[:url]), in_filename)
     `./bin/primitive -i #{in_filename} -o #{out_filename} -n 50`
+    expires_in 2.hours
     render text: File.read(out_filename), content_type: "image/jpeg"
   end
 end
