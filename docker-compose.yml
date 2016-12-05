@@ -10,6 +10,8 @@ app:
   environment:
     POSTGRES_USER: "app"
     POSTGRES_PASSWORD: "development-password"
+  env_file:
+    - ".env"
 
 database:
   container_name: database
