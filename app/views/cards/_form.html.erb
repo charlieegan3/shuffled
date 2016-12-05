@@ -1,16 +1,18 @@
 <script>
   $(document).ready(function () {
     $("#submit_image_query").click(function () {
-      $("#results_image_query img.unopened").remove();
+      $("#results_image_query .image.unopened").remove();
       query = $("#field_image_query").val().replace(/\W+/g, "+").toLowerCase();
       $.getJSON('/image_search/results.json?query=' + query, function(data) {
         $(data).each(function(index) {
-          var image = document.createElement("img");
+          var image = document.createElement("div");
+          $(image).addClass("image");
+          var src = "/primitive/from_url?url=" + this;
+          $(image).attr("data-src", src);
           if (index > 2) {
-            $(image).attr("data-src", "/primitive/from_url?url=" + this);
-            $(image).attr("class", "unopened");
+            $(image).addClass("unopened");
           } else {
-            $(image).attr("src", "/primitive/from_url?url=" + this);
+            $(image).attr("style", "background-image: url('" + src + "');");
           }
           $("#results_image_query").append(image);
         });
@@ -19,18 +21,16 @@
     });
 
     $("#action_reveal_result").click(function () {
-      var image = $("#results_image_query img.unopened").first();
-      image.attr("src", image.attr("data-src"));
-      image.attr("src", image.attr("data-src"));
+      var image = $("#results_image_query .image.unopened").first();
+      $(image).attr("style", "background-image: url('" + image.attr("data-src") + "');");
       image.removeClass("unopened");
     });
 
     function setImageClickHandlers() {
-      $("#results_image_query img").click(function (event) {
-        $("#results_image_query img").removeClass("selected");
+      $("#results_image_query .image").click(function () {
+        $("#results_image_query .image").removeClass("selected");
         $(event.target).toggleClass("selected");
-        $("#field_image").val($(event.target).attr("src"));
-        console.log($("#field_image").val());
+        $("#field_image").val($(this).attr("data-src"));
       });
     }
     setImageClickHandlers();
@@ -42,11 +42,23 @@
 </script>
 
 <style>
-#results_image_query img {
-  width: 180px;
+#results_image_query .image {
+  width: 240px;
+  height: 180px;
+  background-size: cover;
+  margin: 2px;
+  border: 2px solid black;
 }
 
-.selected {
+#results_image_query .image.unopened {
+  display: none;
+}
+
+#results_image_query .image[style] {
+  display: inline-block;
+}
+
+#results_image_query .image.selected {
   border: 3px solid YellowGreen;
   border-radius: 3px;
 }
