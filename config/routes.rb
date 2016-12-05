@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'cards#index'
+
   get '/cards/print', to: 'cards#print', as: :cards_print
   resources :cards
 
