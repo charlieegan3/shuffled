@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Merienda');
+
+.card {
+  background-color: DimGray;
+  border: 3px solid #333;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+
+  background-image: url(https://i.imgur.com/K7PdWrE.jpg);
+  background-size: cover;
+
+  width: 250px;
+  height: 375px;
+
+  margin: 10px;
+
+  font-family: 'Merienda', sans-serif;
+
+  h1 {
+    font-size: 22px;
+    color: white;
+    font-family: 'Berkshire Swash', cursive;
+    margin: 20px auto;
+  }
+
+  img {
+    margin: 5px auto;
+    border-radius: 5px;
+    width: 95%;
+    margin-bottom: 20px;
+    border: 3px solid Maroon;
+  }
+
+  p {
+    background-color: rgba(244, 164, 96, 0.4);
+    color: black;
+    text-align: left;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 95%;
+    border: 3px solid Maroon;
+    box-sizing: border-box;
+  }
+}

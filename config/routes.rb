@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cards
   get 'primitive', to: 'primitive#index'
   get 'primitive/from_url', to: 'primitive#create_from_url'
   post 'primitive', to: 'primitive#create'
