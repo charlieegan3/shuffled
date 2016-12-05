@@ -1,0 +1,26 @@
+<style>
+  @page {
+    size: A4;
+    margin: 0pt;
+  }
+
+  body {
+    zoom: 0.9;
+  }
+</style>
+
+<script>
+$(document).ready(function () {
+  window.print();
+  window.history.back();
+});
+</script>
+
+<div class="card-list">
+  <% @cards.in_groups_of(3).each do |group| %>
+    <% group.each do |card| %>
+      <%= render 'card', card: card %>
+    <% end %>
+    <br/>
+  <% end %>
+</div>
