@@ -67,7 +67,7 @@
 <%= form_for(card) do |f| %>
   <div class="field">
     <%= f.label :title %>
-    <%= f.text_field :title, id: "field_title" %>
+    <%= f.text_field :title, id: "field_title", placeholder: "Object/Action etc." %>
   </div>
 
   <div class="field">
@@ -82,7 +82,7 @@
 
   <div class="field">
     <%= f.label :text %>
-    <%= f.text_field :text %>
+    <%= f.text_area :text, rows: 4, cols: 30, placeholder: "Instructions / description" %>
   </div>
 
   <div class="actions">
