@@ -1,4 +1,7 @@
-<% @images.each do |i| %>
-  <%= image_tag i %>
+<p>Generated images will appear shortly on the right.</p>
+
+<% @images.take(5).each do |i| %>
+  <%= image_tag(i, width: 400) %>
+  <%= image_tag("/primitive/from_url?url=#{CGI.escape(i)}", width: 400) %>
   <br/>
 <% end %>
