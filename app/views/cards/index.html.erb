@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'New Card', new_card_path %>
+<p>
+  <%= link_to 'New Card', new_card_path, class: 'new-button' %>
+</p>
 
-<% @cards.each do |card| %>
-  <%= render 'card', card: card %>
-  <%= link_to 'Edit', edit_card_path(card) %>
-  <%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-  <hr/>
-<% end %>
+<div class="card-list">
+  <% @cards.each do |card| %>
+	<%= render 'card', card: card %>
+  <% end %>
+</div>

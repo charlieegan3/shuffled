@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Merienda');
 
+.new-button {
+  font-family: 'Merienda', sans-serif;
+  background-color: YellowGreen;
+  padding: 10px 5px;
+  text-decoration: none;
+  font-size: 30px;
+  color: white;
+
+  &:hover {
+    background-color: SeaGreen;
+  }
+  &:visited {
+    color: white;
+  }
+}
+
+.card-list a {
+  text-decoration: none;
+}
+
 .card {
   background-color: DimGray;
   border: 3px solid #333;
@@ -16,6 +36,9 @@
   margin: 10px;
 
   font-family: 'Merienda', sans-serif;
+
+  display: inline-block;
+  vertical-align: text-top;
 
   h1 {
     font-size: 22px;

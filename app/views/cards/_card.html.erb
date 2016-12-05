@@ -1,5 +1,7 @@
-<div class="card">
-  <h1><%= card.title %></h1>
-  <div class="image" style="background-image: url('<%= card.image %>')"></div>
-  <p><%= card.text %></p>
-</div>
+<%= link_to edit_card_path(card) do  %>
+  <div class="card">
+    <h1><%= card.title %></h1>
+    <div class="image" style="background-image: url('<%= card.image %>')"></div>
+    <p><%= card.text %></p>
+  </div>
+<% end %>
