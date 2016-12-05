@@ -35,6 +35,12 @@
     }
     setImageClickHandlers();
 
+    setInterval(function() {
+      $("#results_image_query .image").each(function (index) {
+        $(this).attr("style", $(this).attr("style"));
+      });
+    }, 10000);
+
     $("#field_title").change(function (){
       $("#field_image_query").val($("#field_title").val().toLowerCase());
     });
